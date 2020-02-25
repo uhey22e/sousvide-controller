@@ -6,7 +6,8 @@ void DisplayTask::task()
 {
     u8g2.begin();
     // u8g2.setFont(u8g2_font_inb24_mr);
-    u8g2.setFont(u8g2_font_inb30_mf);
+    // u8g2.setFont(u8g2_font_inb30_mf);
+    // u8g2.setFont(u8g2_font_profont22_mf);
 
     char *buf;
 
@@ -23,12 +24,11 @@ void DisplayTask::task()
             u8g2.firstPage();
             do
             {
-                u8g2.drawStr(0, 31, buf);
+                u8g2.setFont(font);
+                u8g2.drawStr(alignCenter(buf), alignMiddle(), buf);
             } while (u8g2.nextPage());
             vPortFree((void *)buf);
         }
-
-        // vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
