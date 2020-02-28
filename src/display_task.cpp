@@ -6,7 +6,7 @@ void DisplayTask::task()
 {
     u8g2.begin();
 
-    char *helloMessage = "HELLO";
+    const char *helloMessage = "HELLO";
     u8g2.firstPage();
     do
     {

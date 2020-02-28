@@ -5,6 +5,7 @@
 #ifndef TASK_TASKBASE_H_
 #define TASK_TASKBASE_H_
 
+#include <Arduino.h>
 #include "FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"

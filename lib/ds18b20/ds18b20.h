@@ -1,3 +1,6 @@
+#ifndef __LIB_DS18B20_H
+#define __LIB_DS18B20_H
+
 #include <Wire.h>
 #include <OneWire.h>
 #include <freertos/task.h>
@@ -41,3 +44,5 @@ public:
      */
     float getTemperatureC();
 };
+
+#endif

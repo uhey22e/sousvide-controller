@@ -40,6 +40,7 @@ public:
     virtual ~DisplayTask()
     {
         vQueueDelete(displayQueue);
+        delete_task();
     }
 
     void displayMessage(const char *message);
