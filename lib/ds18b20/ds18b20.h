@@ -15,6 +15,11 @@ public:
         Resolution12b,
     };
 
+    using Result_t = enum {
+        OK,
+        ERROR,
+    };
+
 private:
     uint8_t pin;
     OneWire oneWire;
@@ -42,7 +47,7 @@ public:
      * Get temperature in celcius
      * @return Temperature [degrees-C]
      */
-    float getTemperatureC();
+    Result_t getTemperatureC(float *temp);
 };
 
 #endif

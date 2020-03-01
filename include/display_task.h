@@ -18,18 +18,29 @@ private:
     const int lcdWidth = 128;
     const int lcdHeight = 32;
 
-    const uint8_t *font = u8g2_font_helvR24_tf;
-    const int fontHeight = 25;
+    bool indicator = false;
+
+    // const uint8_t *font = u8g2_font_helvR24_tf;
+    // const int fontHeight = 25;
+    const uint8_t *font1 = u8g2_font_profont12_mr;
+    const uint8_t *font2 = u8g2_font_logisoso22_tf;
+    const int fontHeight1 = 8;
+    const int fontHeight2 = 22;
 
     int alignCenter(const char *text)
     {
         return (lcdWidth - u8g2.getUTF8Width(text)) / 2;
     }
 
-    int alignMiddle()
+    int alignRight(const char *text)
     {
-        return lcdHeight - (lcdHeight - fontHeight) / 2;
+        return lcdWidth - u8g2.getUTF8Width(text);
     }
+
+    // int alignMiddle()
+    // {
+    //     return lcdHeight - (lcdHeight - fontHeight) / 2;
+    // }
 
 public:
     DisplayTask() : TaskBase("DisplayTask", 1, 4096),
@@ -44,6 +55,11 @@ public:
     }
 
     void displayMessage(const char *message);
+
+    void setIndicator(bool indicate)
+    {
+        indicator = indicate;
+    }
 };
 
 #endif

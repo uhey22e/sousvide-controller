@@ -10,8 +10,8 @@ void DisplayTask::task()
     u8g2.firstPage();
     do
     {
-        u8g2.setFont(font);
-        u8g2.drawStr(alignCenter(helloMessage), alignMiddle(), helloMessage);
+        u8g2.setFont(font2);
+        u8g2.drawStr(alignCenter(helloMessage), 32, helloMessage);
     } while (u8g2.nextPage());
 
     char *buf;
@@ -29,8 +29,12 @@ void DisplayTask::task()
             u8g2.firstPage();
             do
             {
-                u8g2.setFont(font);
-                u8g2.drawStr(alignCenter(buf), alignMiddle(), buf);
+                u8g2.setFont(font2);
+                u8g2.drawUTF8(alignRight(buf), 32, buf);
+                if (indicator)
+                {
+                    u8g2.drawDisc(10, 10, 5);
+                }
             } while (u8g2.nextPage());
             vPortFree((void *)buf);
         }

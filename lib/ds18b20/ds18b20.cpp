@@ -67,7 +67,7 @@ uint32_t DS18B20::requestTemperature()
     return conversionTime;
 }
 
-float DS18B20::getTemperatureC()
+DS18B20::Result_t DS18B20::getTemperatureC(float *temp)
 {
     oneWire.reset();
     oneWire.select(address);
@@ -82,11 +82,11 @@ float DS18B20::getTemperatureC()
     }
 
     // Check CRC
-    if (OneWire::crc8(data, 8) != data[8])
-    {
-        log_e("CRC is not valid.");
-        return 0.0;
-    }
+    // if (OneWire::crc8(data, 8) != data[8])
+    // {
+    //     log_e("CRC is not valid.");
+    //     return ERROR;
+    // }
 
     // Conversion
     int16_t rawData = (data[1] << 8) | data[0];
@@ -107,6 +107,6 @@ float DS18B20::getTemperatureC()
         break;
     }
 
-    float celsius = (float)rawData / 16.0;
-    return celsius;
+    *temp = (float)rawData / 16.0;
+    return OK;
 }
